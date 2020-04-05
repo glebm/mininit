@@ -182,7 +182,7 @@ int main(int argc, char **argv, char **envp)
 	/* Re-open the console device at the new location. */
 	int fd = open("dev/console", O_RDWR, 0);
 	if (fd < 0) {
-		ERROR("Unable to re-open console: %d\n", fd);
+		ERROR("Unable to re-open console: %d %s\n", fd, strerror(errno));
 		return -1;
 	}
 	if (dup2(fd, 0) != 0 || dup2(fd, 1) != 1 || dup2(fd, 2) != 2) {
